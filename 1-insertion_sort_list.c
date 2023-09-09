@@ -3,13 +3,14 @@
 /**
  * swap_nodes - function to swap two nodes.
  * @list: doubly linked list.
- * 
+ * @head: pointer to the head of the list.
+ *
  * Return: Nothing.
 */
 
 void swap_nodes(listint_t **list, listint_t *head)
 {
-	
+
 	if (!(*list)->next)
 		return;
 
@@ -39,22 +40,22 @@ void swap_nodes(listint_t **list, listint_t *head)
 
 	if (!(*list)->next)
 		return;
-	
+
 
 	swap_nodes(list, head);
 }
 
 /**
- * insertion_sort_list - Sorts a doubly linked list of integers in ascending order.
+ * insertion_sort_list - Sorts a doubly linked in ascending order.
  * @list: pointer to doubly linked list.
- * 
+ *
  * Return: (Void).
 */
 
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *head = NULL;
-	
+
 	if (!list)
 		return;
 	head = malloc(sizeof(listint_t));
@@ -64,5 +65,4 @@ void insertion_sort_list(listint_t **list)
 	swap_nodes(list, head);
 	while ((*list)->prev)
 		(*list) = (*list)->prev;
-	return;
 }
