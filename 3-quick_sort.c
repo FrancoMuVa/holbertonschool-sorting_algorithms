@@ -1,6 +1,26 @@
 #include "sort.h"
 
 /**
+ * quick_swap - swap elements of array.
+ * @a: integer.
+ * @b:integer.
+ * @array:array of integer.
+ * @size: size of integer.
+ * @flag: flag.
+ * 
+ * Return: (void).
+*/
+
+void quick_swap(int *a, int *b/*, int *array, size_t size, int flag*/)
+{
+	int aux;
+
+	aux = *a;
+	*a = *b;
+	*b = aux;
+}
+
+/**
  * quick_partition - Lomuto partition.
  * @array: array of  integer.
  * @min:lower integer to compare.
@@ -12,7 +32,7 @@
 
 int quick_partition(int *array, int min, int max, size_t size)
 {
-	int piv = array[max], aux = 0;
+	int piv = array[max];
 	int j = min - 1, i;
 
 	for (i = min; i <= max - 1; i++)
@@ -20,19 +40,24 @@ int quick_partition(int *array, int min, int max, size_t size)
 		if (array[i] <= piv)
 		{
 			j++;
-			aux = array[j];
+			quick_swap(&array[i], &array[j]);
+			
+			/*aux = array[j];
 			array[j] = array[i];
-			array[i] = aux;
+			array[i] = aux;*/
 		}
 	}
 	if (min != 0)
 		print_array(array, size);
-	aux = array[j + 1];
-	array[j + 1] = array[max];
-	array[max] = aux;
 
+	quick_swap(&array[j + 1], &array[max]);
+	
 	if (min == 0)
 		print_array(array, size);
+	/*aux = array[j + 1];
+	array[j + 1] = array[max];
+	array[max] = aux;*/
+
 	return (j + 1);
 }
 
