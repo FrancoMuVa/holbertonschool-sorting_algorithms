@@ -17,7 +17,6 @@ int quick_partition(int *array, int min, int max, size_t size)
 
 	for (i = min; i <= max - 1; i++)
 	{
-		printf("if (%d <= %d)\n", array[i], piv);
 		if (array[i] <= piv)
 		{
 			j++;
