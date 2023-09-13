@@ -39,9 +39,10 @@ int quick_partition(int *array, int min, int max, size_t size)
 
 	for (j = min; j <= max - 1; j++)
 	{
+		/*printf("i: %d - j: %d\n", i, j);*/
 		if (array[j] <= piv)
 		{
-			i++;
+			i = i + 1;
 			quick_swap(&array[i], &array[j], array, size);
 		}
 	}
