@@ -6,25 +6,27 @@
  * @b:integer.
  * @array:array of integer.
  * @size: size of integer.
- * @flag: flag.
- * 
+ *
  * Return: (void).
 */
 
-void quick_swap(int *a, int *b/*, int *array, size_t size, int flag*/)
+void quick_swap(int *a, int *b, int *array, size_t size)
 {
 	int aux;
 
 	aux = *a;
 	*a = *b;
 	*b = aux;
+
+	if (*a != *b || array[*a] != array[*b])
+		print_array(array, size);
 }
 
 /**
  * quick_partition - Lomuto partition.
  * @array: array of  integer.
- * @min:lower integer to compare.
- * @max:higer integer to compare.
+ * @min: lower integer to compare.
+ * @max: higer integer to compare.
  * @size: size of array.
  *
  * Return: new min or max.
@@ -33,32 +35,18 @@ void quick_swap(int *a, int *b/*, int *array, size_t size, int flag*/)
 int quick_partition(int *array, int min, int max, size_t size)
 {
 	int piv = array[max];
-	int j = min - 1, i;
+	int i = min - 1, j;
 
-	for (i = min; i <= max - 1; i++)
+	for (j = min; j <= max - 1; j++)
 	{
-		if (array[i] <= piv)
+		if (array[j] <= piv)
 		{
-			j++;
-			quick_swap(&array[i], &array[j]);
-			
-			/*aux = array[j];
-			array[j] = array[i];
-			array[i] = aux;*/
+			i++;
+			quick_swap(&array[i], &array[j], array, size);
 		}
 	}
-	if (min != 0)
-		print_array(array, size);
-
-	quick_swap(&array[j + 1], &array[max]);
-	
-	if (min == 0)
-		print_array(array, size);
-	/*aux = array[j + 1];
-	array[j + 1] = array[max];
-	array[max] = aux;*/
-
-	return (j + 1);
+	quick_swap(&array[i + 1], &array[max], array, size);
+	return (i + 1);
 }
 
 /**
@@ -96,5 +84,4 @@ void quick_sort(int *array, size_t size)
 	if (!array || size == 0)
 		return;
 	quick_recursive(array, 0, size - 1, size);
-	print_array(array, size);
 }
